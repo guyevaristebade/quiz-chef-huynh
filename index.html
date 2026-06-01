@@ -14,7 +14,9 @@
     --encre: #1A1A2E;
     --gris: #6B6B7B;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
     background-color: var(--encre);
     color: var(--blanc);
@@ -27,74 +29,322 @@
     position: relative;
     overflow-x: hidden;
   }
+
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background:
+    background: 
       radial-gradient(ellipse at 10% 20%, rgba(0,35,149,0.25) 0%, transparent 50%),
       radial-gradient(ellipse at 90% 80%, rgba(237,41,57,0.15) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
   }
-  .container { max-width: 720px; width: 100%; position: relative; z-index: 1; }
-  header { text-align: center; margin-bottom: 3rem; animation: fadeDown 0.8s ease both; }
-  .tricolore-bar { display: flex; height: 4px; border-radius: 2px; overflow: hidden; margin-bottom: 2rem; }
+
+  .container {
+    max-width: 720px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .tricolore-bar {
+    display: flex;
+    height: 4px;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
   .tricolore-bar span { flex: 1; }
   .tricolore-bar span:nth-child(1) { background: var(--bleu); }
   .tricolore-bar span:nth-child(2) { background: var(--blanc); }
   .tricolore-bar span:nth-child(3) { background: var(--rouge); }
-  header h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 900; letter-spacing: 0.02em; line-height: 1.2; color: var(--blanc); }
-  header h1 em { color: var(--or); font-style: italic; }
-  header p { margin-top: 0.75rem; font-size: 0.95rem; color: var(--gris); font-weight: 300; letter-spacing: 0.05em; text-transform: uppercase; }
-  .progress-wrap { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; animation: fadeDown 0.8s 0.1s ease both; }
-  .progress-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--bleu), var(--or)); border-radius: 2px; transition: width 0.5s ease; }
-  .progress-label { font-size: 0.8rem; color: var(--gris); white-space: nowrap; letter-spacing: 0.08em; text-transform: uppercase; }
-  .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2.5rem 2rem; backdrop-filter: blur(8px); animation: fadeUp 0.5s ease both; }
-  .question-number { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--or); margin-bottom: 0.75rem; }
-  .question-text { font-family: 'Playfair Display', serif; font-size: clamp(1.05rem, 3vw, 1.35rem); font-weight: 700; line-height: 1.5; color: var(--blanc); margin-bottom: 1.75rem; }
-  .options { display: flex; flex-direction: column; gap: 0.75rem; }
-  .option-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 0.9rem 1.25rem; color: var(--blanc); font-family: 'Source Serif 4', serif; font-size: 0.95rem; cursor: pointer; text-align: left; transition: all 0.2s ease; display: flex; align-items: center; gap: 0.75rem; }
-  .option-btn:hover:not(:disabled) { background: rgba(200,168,75,0.12); border-color: var(--or); transform: translateX(4px); }
-  .option-btn .letter { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; font-family: 'Playfair Display', serif; transition: all 0.2s; }
-  .option-btn.correct { background: rgba(34,197,94,0.15); border-color: #22C55E; }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    color: var(--blanc);
+  }
+
+  header h1 em {
+    color: var(--or);
+    font-style: italic;
+  }
+
+  header p {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--gris);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* Progress */
+  .progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    animation: fadeDown 0.8s 0.1s ease both;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--bleu), var(--or));
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  .progress-label {
+    font-size: 0.8rem;
+    color: var(--gris);
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Card */
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    backdrop-filter: blur(8px);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .question-number {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--or);
+    margin-bottom: 0.75rem;
+  }
+
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.05rem, 3vw, 1.35rem);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--blanc);
+    margin-bottom: 1.75rem;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .option-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 0.9rem 1.25rem;
+    color: var(--blanc);
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    background: rgba(200,168,75,0.12);
+    border-color: var(--or);
+    transform: translateX(4px);
+  }
+
+  .option-btn .letter {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-family: 'Playfair Display', serif;
+    transition: all 0.2s;
+  }
+
+  .option-btn.correct {
+    background: rgba(34,197,94,0.15);
+    border-color: #22C55E;
+  }
   .option-btn.correct .letter { background: #22C55E; color: #fff; }
-  .option-btn.wrong { background: rgba(237,41,57,0.15); border-color: var(--rouge); }
+
+  .option-btn.wrong {
+    background: rgba(237,41,57,0.15);
+    border-color: var(--rouge);
+  }
   .option-btn.wrong .letter { background: var(--rouge); color: #fff; }
+
   .option-btn:disabled { cursor: default; }
-  .feedback { margin-top: 1.25rem; padding: 1rem 1.25rem; border-radius: 10px; font-size: 0.9rem; line-height: 1.6; display: none; }
+
+  /* Feedback */
+  .feedback {
+    margin-top: 1.25rem;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    display: none;
+  }
+
   .feedback.show { display: block; animation: fadeUp 0.3s ease; }
   .feedback.ok { background: rgba(34,197,94,0.12); border-left: 3px solid #22C55E; color: #86efac; }
   .feedback.ko { background: rgba(237,41,57,0.12); border-left: 3px solid var(--rouge); color: #fca5a5; }
-  .nav { margin-top: 1.75rem; display: flex; justify-content: flex-end; }
-  .btn-next { background: var(--or); color: var(--encre); border: none; border-radius: 8px; padding: 0.75rem 2rem; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; letter-spacing: 0.05em; transition: all 0.2s; display: none; }
+
+  /* Nav */
+  .nav {
+    margin-top: 1.75rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn-next {
+    background: var(--or);
+    color: var(--encre);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 2rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+    display: none;
+  }
+
   .btn-next:hover { background: #dbbf5a; transform: translateY(-2px); }
   .btn-next.show { display: block; animation: fadeUp 0.3s 0.1s ease both; }
-  #results { display: none; text-align: center; animation: fadeUp 0.6s ease both; }
-  .score-circle { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--or); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 2rem; background: rgba(200,168,75,0.08); }
-  .score-circle .num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--or); line-height: 1; }
-  .score-circle .denom { font-size: 0.85rem; color: var(--gris); letter-spacing: 0.1em; text-transform: uppercase; }
-  #results h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.75rem; }
-  #results p { color: var(--gris); max-width: 480px; margin: 0 auto 2rem; line-height: 1.7; }
-  .tribute { background: rgba(0,35,149,0.15); border: 1px solid rgba(0,35,149,0.4); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; font-style: italic; color: rgba(248,245,238,0.85); line-height: 1.8; font-size: 0.95rem; }
-  .btn-restart { background: transparent; border: 1px solid var(--or); color: var(--or); border-radius: 8px; padding: 0.75rem 2.5rem; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; letter-spacing: 0.05em; transition: all 0.2s; }
+
+  /* Results */
+  #results {
+    display: none;
+    text-align: center;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .score-circle {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid var(--or);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    background: rgba(200,168,75,0.08);
+  }
+
+  .score-circle .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--or);
+    line-height: 1;
+  }
+
+  .score-circle .denom {
+    font-size: 0.85rem;
+    color: var(--gris);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  #results h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
+
+  #results p {
+    color: var(--gris);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  .tribute {
+    background: rgba(0,35,149,0.15);
+    border: 1px solid rgba(0,35,149,0.4);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+    color: rgba(248,245,238,0.85);
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
+  .btn-restart {
+    background: transparent;
+    border: 1px solid var(--or);
+    color: var(--or);
+    border-radius: 8px;
+    padding: 0.75rem 2.5rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+
   .btn-restart:hover { background: rgba(200,168,75,0.12); }
-  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
 <div class="container">
+
   <header>
     <div class="tricolore-bar"><span></span><span></span><span></span></div>
     <h1>Quiz — <em>SCH Yvonne Huynh</em></h1>
     <p>391<sup>e</sup> Promotion · ENSOA · 1<sup>er</sup> bataillon</p>
   </header>
+
   <div class="progress-wrap">
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <span class="progress-label" id="progressLabel">1 / 25</span>
+    <span class="progress-label" id="progressLabel">1 / 10</span>
   </div>
+
   <div id="quizArea">
     <div class="card" id="card">
       <div class="question-number" id="qNumber">Question 1</div>
@@ -106,10 +356,11 @@
       </div>
     </div>
   </div>
+
   <div id="results">
     <div class="score-circle">
       <div class="num" id="scoreNum">0</div>
-      <div class="denom" id="scoreDenom">/ 25</div>
+      <div class="denom" id="scoreDenom">/ 10</div>
     </div>
     <h2 id="resultTitle"></h2>
     <p id="resultMsg"></p>
@@ -118,44 +369,28 @@
     </div>
     <button class="btn-restart" onclick="restart()">Recommencer le quiz</button>
   </div>
+
 </div>
+
 <script>
 const questions = [
   {
     q: "Dans quel département Yvonne Huynh est-elle née ?",
     opts: ["Les Yvelines", "La Seine-Saint-Denis", "Le Val-de-Marne", "L'Essonne"],
     ans: 0,
-    expl: "Yvonne Huynh est née dans le département des Yvelines."
+    expl: "Yvonne Huynh est née le 18 avril 1987 dans le département des Yvelines."
   },
   {
-    q: "Quelle est la date de naissance d'Yvonne Huynh ?",
-    opts: ["18 avril 1985", "18 avril 1987", "2 janvier 1987", "9 mars 1986"],
+    q: "À quel âge Yvonne Huynh découvre-t-elle sa vocation militaire lors d'une journée de présentation des armées à Versailles ?",
+    opts: ["Dix-sept ans", "Dix-neuf ans", "Vingt et un ans", "Vingt-trois ans"],
     ans: 1,
-    expl: "Elle est née le 18 avril 1987."
-  },
-  {
-    q: "De quelle origine sont ses parents ?",
-    opts: ["Chinois", "Cambodgiens", "Vietnamiens", "Laotiens"],
-    ans: 2,
-    expl: "Ses parents sont vietnamiens."
-  },
-  {
-    q: "À quel âge découvre-t-elle sa vocation militaire lors d'une journée à Versailles ?",
-    opts: ["17 ans", "18 ans", "19 ans", "21 ans"],
-    ans: 2,
     expl: "C'est à dix-neuf ans, lors d'une journée de présentation des armées à Versailles, qu'elle découvrit sa vocation."
   },
   {
     q: "Dans quel régiment s'engage-t-elle en avril 2006 au sein de la réserve opérationnelle ?",
-    opts: ["3e régiment d'artillerie de marine", "5e régiment du génie de Versailles", "2e régiment de hussards", "Régiment de service militaire adapté"],
+    opts: ["3e régiment d'artillerie de marine", "5e régiment du génie de Versailles", "2e régiment de hussards de Haguenau", "Régiment du service militaire adapté"],
     ans: 1,
     expl: "En avril 2006, elle s'engage au 5e régiment du génie de Versailles au sein de la réserve opérationnelle."
-  },
-  {
-    q: "Dans quel régiment rejoint-elle ensuite les rangs en qualité d'opérateur reconnaissance ?",
-    opts: ["5e régiment du génie", "3e régiment d'artillerie de marine dans le Var", "2e régiment de hussards à Haguenau", "1er régiment de tirailleurs"],
-    ans: 1,
-    expl: "Forte de sa première expérience, elle rejoint le 3e régiment d'artillerie de marine basé dans le Var."
   },
   {
     q: "Dans quel cadre est-elle engagée au Tchad le 30 septembre 2007 ?",
@@ -164,112 +399,40 @@ const questions = [
     expl: "Elle est engagée au Tchad dans le cadre de l'opération « Épervier » le 30 septembre 2007."
   },
   {
-    q: "Dans quelle ville tchadienne son unité fait-elle face à un afflux massif de blessés ?",
-    opts: ["N'Djamena", "Moundou", "Abéché", "Sarh"],
-    ans: 2,
-    expl: "Son unité fait face à un afflux massif de blessés tchadiens à l'arrivée sur Abéché."
-  },
-  {
-    q: "Combien de blessés contribue-t-elle à évacuer et trier lors de son mandat au Tchad ?",
-    opts: ["150 blessés", "280 blessés", "Plus de 430 blessés", "500 blessés"],
-    ans: 2,
-    expl: "Elle contribue à l'évacuation et au triage de plus de 430 blessés de guerre."
-  },
-  {
     q: "Quel grade obtient-elle le 1er octobre 2010 ?",
     opts: ["Première classe", "Sergent", "Caporal", "Caporal-chef"],
     ans: 2,
     expl: "De retour en France, elle est nommée caporal le 1er octobre 2010."
   },
   {
-    q: "Quand est-elle promue caporal-chef ?",
-    opts: ["1er octobre 2011", "1er septembre 2012", "1er mars 2013", "1er janvier 2014"],
-    ans: 2,
-    expl: "Elle est promue caporal-chef le 1er mars 2013."
-  },
-  {
-    q: "Pour quelle fonction est-elle désignée sur cours préavis en janvier 2014 ?",
-    opts: ["Opérateur drone", "Pupitreur ATLAS", "Chef d'équipe renseignement", "Moniteur de tir"],
+    q: "Au sein de quel régiment rejoint-elle le renseignement en 2017 ?",
+    opts: ["1er régiment d'artillerie", "2e régiment de hussards à Haguenau", "5e régiment de génie", "3e régiment de marine"],
     ans: 1,
-    expl: "Elle est désignée pour occuper la fonction de pupitreur « ATLAS » du 9 au 16 janvier 2014."
+    expl: "Elle rejoint le 1er août 2017 le 2e régiment de hussards à Haguenau, spécialisé dans le renseignement."
   },
   {
-    q: "Dans quelle école a lieu le partenariat en janvier 2014 ?",
-    opts: ["École militaire de Paris", "École de Cavalerie de Saumur", "École d'artillerie de Draguignan", "École du Génie d'Angers"],
-    ans: 2,
-    expl: "Le partenariat a lieu avec l'École d'artillerie de Draguignan."
-  },
-  {
-    q: "Dans quel territoire d'outre-mer est-elle affectée le 1er août 2014 ?",
-    opts: ["Martinique", "Guyane", "Polynésie française", "La Réunion"],
-    ans: 3,
-    expl: "Elle est affectée au régiment du service militaire adapté de La Réunion."
-  },
-  {
-    q: "Combien d'années passe-t-elle à La Réunion ?",
-    opts: ["Un an", "Deux ans", "Trois ans", "Quatre ans"],
-    ans: 2,
-    expl: "Durant trois années, employée comme chef de groupe, elle monte au quotidien ses qualités pédagogiques."
-  },
-  {
-    q: "Dans quel régiment rejoint-elle le renseignement le 1er août 2017 ?",
-    opts: ["1er régiment de spahis", "2e régiment de hussards à Haguenau", "13e bataillon de chasseurs alpins", "4e régiment de chasseurs"],
-    ans: 1,
-    expl: "Elle rejoint le 2e régiment de hussards à Haguenau, spécialisé dans le renseignement."
-  },
-  {
-    q: "Quelle distinction obtient-elle en étant la première femme à réussir ce stage ?",
-    opts: ["Stage de sniper", "Stage d'équipier appui recueil puis d'adjoint d'équipe de recueil de l'information", "Stage de parachutiste", "Stage de plongeur de combat"],
-    ans: 1,
-    expl: "Elle est la première femme à réussir le stage d'équipier appui recueil, puis le très sélectif stage d'adjoint d'équipe de recueil de l'information."
-  },
-  {
-    q: "Quand est-elle nommée sergent ?",
-    opts: ["1er août 2017", "1er janvier 2018", "1er août 2018", "1er mars 2019"],
-    ans: 2,
-    expl: "C'est naturellement qu'elle est nommée sergent le 1er août 2018."
-  },
-  {
-    q: "Dans quel pays est-elle déployée dans le cadre de l'opération Barkhane en 2019 ?",
-    opts: ["Niger", "Burkina Faso", "Mali", "Mauritanie"],
+    q: "Dans quel cadre opérationnel Yvonne Huynh est-elle déployée au Mali de janvier à juin 2019 ?",
+    opts: ["Opération Épervier", "Opération Serval", "Opération Barkhane", "Opération Licorne"],
     ans: 2,
     expl: "Elle est déployée au Mali du 25 janvier au 3 juin 2019 dans le cadre de l'opération « Barkhane »."
   },
   {
-    q: "En quelle qualité est-elle déployée lors de l'opération Barkhane ?",
-    opts: ["Opérateur drone", "Pupitreur", "Capteur recherche humaine", "Chef de poste"],
-    ans: 2,
-    expl: "Elle est déployée au Mali en qualité de capteur recherche humaine."
-  },
-  {
-    q: "Quand est-elle de nouveau engagée dans l'opération Barkhane ?",
-    opts: ["1er janvier 2020", "15 juin 2020", "24 septembre 2020", "2 novembre 2020"],
-    ans: 2,
-    expl: "Le 24 septembre 2020, elle est de nouveau engagée au sein de l'opération « Barkhane »."
-  },
-  {
-    q: "Aux abords de quelle ville se déroule sa dernière mission le 2 janvier 2021 ?",
-    opts: ["Gao", "Bamako", "Kidal", "Ménaka"],
-    ans: 3,
-    expl: "Le 2 janvier 2021 aux abords de Ménaka, elle conduit une mission de renseignement dans la ville cruciale du Liptako."
-  },
-  {
-    q: "Comment est-elle mortellement blessée le 2 janvier 2021 ?",
-    opts: ["Par un tir de sniper", "Lors d'un accrochage à pied", "Par un engin explosif improvisé au passage de son véhicule", "Par une roquette"],
-    ans: 2,
+    q: "Comment Yvonne Huynh est-elle mortellement blessée le 2 janvier 2021 ?",
+    opts: ["Lors d'un accrochage à pied", "Par un engin explosif improvisé au passage de son véhicule", "Par un tir de sniper", "Lors d'une chute de son véhicule blindé"],
+    ans: 1,
     expl: "Yvonne Huynh est mortellement blessée par un engin explosif improvisé déclenché au passage de son véhicule."
   },
   {
-    q: "Quelle décoration reçoit-elle après son sacrifice, citée à l'ordre de l'armée ?",
-    opts: ["Médaille militaire", "Légion d'honneur à titre posthume", "Croix de la Valeur militaire avec palme de bronze", "Médaille de la Défense nationale"],
+    q: "Quelle distinction lui est décernée à titre exceptionnel en hommage à son sacrifice ?",
+    opts: ["Médaille d'or de la Défense nationale", "Légion d'honneur à titre posthume", "Promotion au grade de sergent-chef à titre exceptionnel", "Croix du combattant"],
     ans: 2,
-    expl: "Elle est citée à l'ordre de l'armée et décorée de la Croix de la Valeur militaire avec palme de bronze."
+    expl: "Elle est promue au grade de sergent-chef à titre exceptionnel, citée à l'ordre de l'armée et décorée de la Croix de la Valeur militaire avec palme de bronze."
   },
   {
-    q: "Quel est le prénom du fils qu'elle laisse derrière elle ?",
-    opts: ["Lucas", "Thomas", "Evan", "Nathan"],
+    q: "Combien de décorations le document mentionne-t-il parmi les titres du SCH Huynh ?",
+    opts: ["Cinq", "Six", "Sept", "Huit"],
     ans: 2,
-    expl: "Elle laisse un fils, âgé à l'époque de 17 ans : Evan."
+    expl: "Le document liste sept décorations : Légion d'honneur, Médaille militaire, Croix de la Valeur militaire avec palme de bronze, Croix du combattant, Médaille d'Outre-Mer (agrafes TCHAD et SAHEL), Médaille d'or de la Défense nationale, et Médaille de la protection militaire du territoire."
   }
 ];
 
@@ -281,6 +444,7 @@ function render() {
   const q = questions[current];
   document.getElementById('qNumber').textContent = `Question ${current + 1}`;
   document.getElementById('qText').textContent = q.q;
+
   const letters = ['A','B','C','D'];
   const optDiv = document.getElementById('options');
   optDiv.innerHTML = '';
@@ -291,13 +455,18 @@ function render() {
     btn.onclick = () => choose(i);
     optDiv.appendChild(btn);
   });
+
   document.getElementById('feedback').className = 'feedback';
   document.getElementById('feedback').textContent = '';
   document.getElementById('btnNext').className = 'btn-next';
   answered = false;
+
+  // Progress
   const pct = (current / questions.length) * 100;
   document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressLabel').textContent = `${current + 1} / ${questions.length}`;
+
+  // Animate card
   const card = document.getElementById('card');
   card.style.animation = 'none';
   card.offsetHeight;
@@ -310,11 +479,13 @@ function choose(idx) {
   const q = questions[current];
   const btns = document.querySelectorAll('.option-btn');
   const fb = document.getElementById('feedback');
+
   btns.forEach((btn, i) => {
     btn.disabled = true;
     if (i === q.ans) btn.classList.add('correct');
     else if (i === idx) btn.classList.add('wrong');
   });
+
   if (idx === q.ans) {
     score++;
     fb.className = 'feedback ok show';
@@ -323,6 +494,7 @@ function choose(idx) {
     fb.className = 'feedback ko show';
     fb.textContent = '✗ Incorrect. ' + q.expl;
   }
+
   document.getElementById('btnNext').className = 'btn-next show';
   if (current === questions.length - 1) {
     document.getElementById('btnNext').textContent = 'Voir les résultats →';
@@ -331,8 +503,11 @@ function choose(idx) {
 
 document.getElementById('btnNext').onclick = () => {
   current++;
-  if (current < questions.length) render();
-  else showResults();
+  if (current < questions.length) {
+    render();
+  } else {
+    showResults();
+  }
 };
 
 function showResults() {
@@ -343,30 +518,30 @@ function showResults() {
   res.style.display = 'block';
   document.getElementById('scoreNum').textContent = score;
   document.getElementById('scoreDenom').textContent = `/ ${questions.length}`;
-  const pct = score / questions.length;
+
   let title, msg;
+  const pct = score / questions.length;
   if (pct === 1) {
     title = 'Parfait, honneur à vous !';
-    msg = 'Score parfait ! Vous connaissez chaque détail du parcours exceptionnel du sergent-chef Yvonne Huynh. Portez haut sa mémoire.';
-  } else if (pct >= 0.8) {
-    title = 'Excellente connaissance';
-    msg = 'Vous maîtrisez très bien la vie et le parcours de cette héroïne française. Un bel hommage à sa mémoire.';
-  } else if (pct >= 0.6) {
-    title = 'Bonne connaissance';
-    msg = 'Vous avez bien retenu l\'essentiel. Quelques détails vous ont échappé — relisez son parcours pour aller plus loin.';
+    msg = 'Vous connaissez parfaitement le parcours de la sergent-chef Yvonne Huynh. Portez haut sa mémoire.';
+  } else if (pct >= 0.7) {
+    title = 'Très bonne connaissance';
+    msg = 'Vous avez bien retenu l\'essentiel de la vie et du parcours exceptionnel de cette héroïne française.';
   } else if (pct >= 0.4) {
     title = 'Des lacunes à combler';
     msg = 'Vous avez quelques connaissances sur le SCH Huynh. Relisez les documents pour mieux honorer sa mémoire.';
   } else {
     title = 'À revoir';
-    msg = 'Sa vie mérite d\'être connue. Prenez le temps de relire son parcours remarquable et recommencez le quiz.';
+    msg = 'Sa vie mérite d\'être connue. Prenez le temps de relire son parcours et recommencez le quiz.';
   }
   document.getElementById('resultTitle').textContent = title;
   document.getElementById('resultMsg').textContent = msg;
 }
 
 function restart() {
-  current = 0; score = 0; answered = false;
+  current = 0;
+  score = 0;
+  answered = false;
   document.getElementById('results').style.display = 'none';
   document.getElementById('quizArea').style.display = 'block';
   render();
